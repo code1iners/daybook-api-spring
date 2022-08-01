@@ -4,7 +4,7 @@ spring:
 
 ---
 server:
-  port: ${PORT:8080}
+  port: ${$PORT:8080}
 
 spring:
   profiles: local

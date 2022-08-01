@@ -1,0 +1,9 @@
+#
+#Mon Aug 01 18:34:02 KST 2022
+cc.codeliners.daybookapi.repository.UserRepository=org.springframework.data.repository.Repository
+cc.codeliners.daybookapi.config.SecurityConfig=org.springframework.stereotype.Component
+cc.codeliners.daybookapi.controller.UserController=org.springframework.stereotype.Component
+cc.codeliners.daybookapi.service.UserService=org.springframework.stereotype.Component
+cc.codeliners.daybookapi.entity.User=javax.persistence.Entity,javax.persistence.Table
+cc.codeliners.daybookapi.controller.HelloController=org.springframework.stereotype.Component
+cc.codeliners.daybookapi.DaybookApiApplication=org.springframework.stereotype.Component,org.springframework.boot.SpringBootConfiguration

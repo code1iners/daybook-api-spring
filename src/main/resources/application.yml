@@ -1,11 +1,4 @@
 spring:
-  profiles:
-    active: local
-
----
-
-spring:
-  profiles: local
   jpa:
     properties:
       hibernate:
@@ -24,3 +17,6 @@ spring:
     username: postgres
     password: root
     platform: postgres
+
+server:
+  port: ${PORT:8080}

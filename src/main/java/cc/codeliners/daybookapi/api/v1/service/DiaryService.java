@@ -1,6 +1,6 @@
-package cc.codeliners.daybookapi.service;
+package cc.codeliners.daybookapi.api.v1.service;
 
-import cc.codeliners.daybookapi.common.ApiResponse;
+import cc.codeliners.daybookapi.api.v1.common.ApiResponse;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

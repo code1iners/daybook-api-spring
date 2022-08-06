@@ -1,4 +1,4 @@
-package cc.codeliners.daybookapi.dto;
+package cc.codeliners.daybookapi.api.v1.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

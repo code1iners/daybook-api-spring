@@ -1,6 +1,6 @@
-package cc.codeliners.daybookapi.repository;
+package cc.codeliners.daybookapi.api.v1.repository;
 
-import cc.codeliners.daybookapi.entity.User;
+import cc.codeliners.daybookapi.api.v1.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,9 +1,9 @@
-package cc.codeliners.daybookapi.service;
+package cc.codeliners.daybookapi.api.v1.service;
 
-import cc.codeliners.daybookapi.common.ApiResponse;
-import cc.codeliners.daybookapi.dto.UserJoinRequestDto;
-import cc.codeliners.daybookapi.entity.User;
-import cc.codeliners.daybookapi.repository.UserRepository;
+import cc.codeliners.daybookapi.api.v1.common.ApiResponse;
+import cc.codeliners.daybookapi.api.v1.dto.UserJoinRequestDto;
+import cc.codeliners.daybookapi.api.v1.entity.User;
+import cc.codeliners.daybookapi.api.v1.repository.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 

@@ -1,4 +1,4 @@
-package cc.codeliners.daybookapi.entity;
+package cc.codeliners.daybookapi.api.v1.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;

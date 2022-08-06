@@ -1,4 +1,4 @@
-package cc.codeliners.daybookapi.common;
+package cc.codeliners.daybookapi.api.v1.common;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

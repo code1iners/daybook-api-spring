@@ -1,4 +1,4 @@
-package cc.codeliners.daybookapi.config;
+package cc.codeliners.daybookapi.api.v1.config;
 
 import lombok.extern.log4j.Log4j2;
 import org.springframework.context.annotation.Bean;
@@ -25,7 +25,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/hello","/join","/main","/diary*").permitAll()
+                .antMatchers("/hello","/join","/main","/diaries*").permitAll()
                 .anyRequest().authenticated();
     }
 

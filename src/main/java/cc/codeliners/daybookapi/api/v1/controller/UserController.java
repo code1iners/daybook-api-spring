@@ -1,4 +1,4 @@
-package cc.codeliners.daybookapi.api.v1.entity.controller;
+package cc.codeliners.daybookapi.api.v1.controller;
 
 import cc.codeliners.daybookapi.api.v1.common.ApiResponse;
 import cc.codeliners.daybookapi.api.v1.service.UserService;
@@ -10,7 +10,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.Email;
 
 @RestController
-@RequestMapping("")
+@RequestMapping("/api/v1")
 @Log4j2
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class UserController {

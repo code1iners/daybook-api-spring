@@ -1,4 +1,4 @@
-package cc.codeliners.daybookapi.api.v1.entity.controller;
+package cc.codeliners.daybookapi.api.v1.controller;
 
 import cc.codeliners.daybookapi.api.v1.common.ApiResponse;
 import cc.codeliners.daybookapi.api.v1.service.DiaryService;
@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/diaries")
+@RequestMapping("/api/v1")
 public class DiaryController {
 
     private final DiaryService diaryService;
@@ -16,7 +16,7 @@ public class DiaryController {
         this.diaryService = diaryService;
     }
 
-    @GetMapping("")
+    @GetMapping("/diaries")
     public ApiResponse diaryMain(){
 
         return diaryService.diaryMain();

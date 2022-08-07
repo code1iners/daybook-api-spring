@@ -31,6 +31,7 @@ public class UserService {
         Date date = new Date();
         Timestamp now = new Timestamp(date.getTime());
 
+
         User user = User.builder()
                 .userEmail(userJoinRequestDto.getUserEmail())
                 .password(passwordEncoder.encode(userJoinRequestDto.getPassword()))

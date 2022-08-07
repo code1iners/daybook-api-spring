@@ -17,10 +17,13 @@ public class DiaryController {
     }
 
     @GetMapping("/diaries")
-    public ApiResponse diaryMain(int year, int month){
+    public ApiResponse diaryMain(String year, String month){
+        return diaryService.diaryMain(year,month);
+    }
 
-        return diaryService.diaryMain();
-
+    @GetMapping("/diaries/retrieve")
+    public ApiResponse getDiaryList(@RequestParam String year, @RequestParam String month, @RequestParam String day){
+        return diaryService.findDiaryByDate(year,month,day);
     }
 
     @PostMapping("/diaries")

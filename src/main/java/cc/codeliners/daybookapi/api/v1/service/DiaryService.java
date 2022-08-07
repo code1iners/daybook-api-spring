@@ -8,10 +8,7 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 @Log4j2
@@ -23,18 +20,25 @@ public class DiaryService {
         this.diaryRepository = diaryRepository;
     }
 
-    public ApiResponse diaryMain(){
+    public ApiResponse diaryMain(String year, String month){
         Map result  = new HashMap<String, Object>();
 
-        result.put("year",2022);
-        result.put("month",8);
+        result.put("year",year);
+        result.put("month",month);
         List diary = new ArrayList();
 
         for (int i=1;i<32;i++){
             Map data = new HashMap<String, Integer>();
 
+            String day;
+            if(i<10){
+                day = "0"+i;
+            }
+            else {
+                day = String.valueOf(i);
+            }
             data.put("day",i);
-            data.put("count",(int)((Math.random()*10000)%10));
+            data.put("count",diaryRepository.countByYearAndMonthAndDay(year, month, day));
 
             diary.add(data);
 
@@ -45,11 +49,28 @@ public class DiaryService {
 
     }
 
-    public ApiResponse createDiary(DiaryCreateRequestDto diaryCreateRequestDto){
+    public ApiResponse findDiaryByDate(String year, String month, String day){
+        List<Diary> diaries = diaryRepository.findDiaryByDate(year, month, day);
 
-        String dateTime = diaryCreateRequestDto.getYear()+"-"+diaryCreateRequestDto.getMonth()+"-"+diaryCreateRequestDto.getDay()+" 00:00:00";
+        if (diaries.isEmpty()||diaries.size()==0){
+
+        }
+
+        return new ApiResponse(200,"조회", diaries);
+
+    }
+
+
+
+    public ApiResponse createDiary(DiaryCreateRequestDto diaryCreateRequestDto){
+        Date date = new Date();
+        Timestamp now = new Timestamp(date.getTime());
+
         Diary diary = Diary.builder()
-                .registerDate(Timestamp.valueOf(dateTime))
+                .registerDate(now)
+                .year(diaryCreateRequestDto.getYear())
+                .month(diaryCreateRequestDto.getMonth())
+                .day(diaryCreateRequestDto.getDay())
                 .content(diaryCreateRequestDto.getContent())
                 .build();
 

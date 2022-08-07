@@ -8,8 +8,8 @@ import lombok.Data;
 @Builder
 @AllArgsConstructor
 public class DiaryCreateRequestDto {
-    public int year;
-    public int month;
-    public int day;
+    public String year;
+    public String month;
+    public String day;
     public String content;
 }

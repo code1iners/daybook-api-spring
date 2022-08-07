@@ -26,6 +26,15 @@ public class Diary {
     @Column(name = "content")
     private String content;
 
+    @Column(name = "year")
+    private String year;
+
+    @Column(name = "month")
+    private String month;
+
+    @Column(name = "day")
+    private String day;
+
     @Column(name = "register_date")
     private Timestamp registerDate;
 

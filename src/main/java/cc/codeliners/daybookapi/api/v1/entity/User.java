@@ -1,4 +1,4 @@
-package cc.codeliners.daybookapi.entity;
+package cc.codeliners.daybookapi.api.v1.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
@@ -20,9 +20,9 @@ import java.time.LocalDateTime;
 @Table(name = "app_user")
 public class User {
     @Id
-    @Column(name = "user_no")
+    @Column(name = "user_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int userNo;
+    private int userId;
 
     @Column(name = "user_email", nullable = false, unique = true, length = 100)
     private String userEmail;

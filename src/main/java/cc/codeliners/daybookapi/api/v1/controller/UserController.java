@@ -1,17 +1,16 @@
-package cc.codeliners.daybookapi.controller;
+package cc.codeliners.daybookapi.api.v1.controller;
 
-import cc.codeliners.daybookapi.common.ApiResponse;
-import cc.codeliners.daybookapi.dto.UserJoinRequestDto;
-import cc.codeliners.daybookapi.service.UserService;
+import cc.codeliners.daybookapi.api.v1.common.ApiResponse;
+import cc.codeliners.daybookapi.api.v1.service.UserService;
+import cc.codeliners.daybookapi.api.v1.dto.UserJoinRequestDto;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Email;
 
 @RestController
-@RequestMapping("")
+@RequestMapping("/api/v1")
 @Log4j2
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class UserController {

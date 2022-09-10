@@ -22,12 +22,12 @@ public class UserController {
         this.userService = userService;
     }
 
-    @PostMapping("/main")
-    public ApiResponse chseckEmail(@RequestParam @Email String email){
+    @PostMapping("/auth/main")
+    public ApiResponse chseckEmail(@RequestBody @Email String email){
         return userService.checkEmail(email);
     }
 
-    @PostMapping("/join")
+    @PostMapping("/auth/join")
     public ApiResponse join(@RequestBody @Valid UserJoinRequestDto userJoinRequestDto){
         return userService.join(userJoinRequestDto);
     }

@@ -5,6 +5,9 @@ spring:
 ---
 server:
   port: 3000
+  error:
+    include-stacktrace: always
+    include-message: always
 
 spring:
   profiles: local
@@ -26,3 +29,4 @@ spring:
     username: postgres
     password: root
     platform: postgres
+

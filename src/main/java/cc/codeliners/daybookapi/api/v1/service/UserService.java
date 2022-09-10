@@ -2,7 +2,7 @@ package cc.codeliners.daybookapi.api.v1.service;
 
 import cc.codeliners.daybookapi.api.v1.common.ApiResponse;
 import cc.codeliners.daybookapi.api.v1.dto.UserJoinRequestDto;
-import cc.codeliners.daybookapi.api.v1.entity.User;
+import cc.codeliners.daybookapi.api.v1.entity.Member;
 import cc.codeliners.daybookapi.api.v1.repository.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -32,14 +32,14 @@ public class UserService {
         Timestamp now = new Timestamp(date.getTime());
 
 
-        User user = User.builder()
+        Member member = Member.builder()
                 .userEmail(userJoinRequestDto.getUserEmail())
                 .password(passwordEncoder.encode(userJoinRequestDto.getPassword()))
                 .userName(userJoinRequestDto.getUserName())
                 .birthday(userJoinRequestDto.getBirthday())
                 .registerDate(now)
                 .build();
-        userRepository.save(user);
+        userRepository.save(member);
         return new ApiResponse(200,"회원가입이 완료되었습니다.");
     }
 

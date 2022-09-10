@@ -4,6 +4,7 @@ import cc.codeliners.daybookapi.api.v1.common.ApiResponse;
 import cc.codeliners.daybookapi.api.v1.service.UserService;
 import cc.codeliners.daybookapi.api.v1.dto.UserJoinRequestDto;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -30,5 +31,10 @@ public class UserController {
     @PostMapping("/auth/join")
     public ApiResponse join(@RequestBody @Valid UserJoinRequestDto userJoinRequestDto){
         return userService.join(userJoinRequestDto);
+    }
+    @Transactional
+    @DeleteMapping("/auth/{email}")
+    public ApiResponse deleteUser(@PathVariable @Email String email){
+        return userService.deleteUser(email);
     }
 }

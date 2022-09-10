@@ -41,6 +41,10 @@ public class UserService {
                 .build();
         userRepository.save(user);
         return new ApiResponse(200,"회원가입이 완료되었습니다.");
+    }
 
+    public ApiResponse deleteUser(String email){
+        userRepository.deleteByUserEmail(email);
+        return new ApiResponse(200,email+" 회원의 탈퇴가 완료되었습니다.");
     }
 }

@@ -22,7 +22,7 @@ public class UserController {
         this.userService = userService;
     }
 
-    @PostMapping("/auth/main")
+    @PostMapping("/auth/check")
     public ApiResponse chseckEmail(@RequestBody @Email String email){
         return userService.checkEmail(email);
     }

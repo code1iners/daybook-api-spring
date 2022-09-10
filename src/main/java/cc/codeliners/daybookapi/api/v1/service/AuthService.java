@@ -1,6 +1,7 @@
 package cc.codeliners.daybookapi.api.v1.service;
 
 import cc.codeliners.daybookapi.api.v1.common.ApiResponse;
+import cc.codeliners.daybookapi.api.v1.common.CustomException;
 import cc.codeliners.daybookapi.api.v1.dto.UserJoinRequestDto;
 import cc.codeliners.daybookapi.api.v1.entity.Member;
 import cc.codeliners.daybookapi.api.v1.repository.MemberRepository;
@@ -11,33 +12,36 @@ import java.sql.Timestamp;
 import java.util.Date;
 
 @Service
-public class UserService {
+public class AuthService {
     private final MemberRepository memberRepository;
     private final PasswordEncoder passwordEncoder;
 
-    public UserService(MemberRepository memberRepository, PasswordEncoder passwordEncoder) {
+    public AuthService(MemberRepository memberRepository, PasswordEncoder passwordEncoder) {
         this.memberRepository = memberRepository;
         this.passwordEncoder = passwordEncoder;
     }
 
-    public ApiResponse checkEmail(String email){
+    public boolean checkEmail(String email){
         boolean result = true;
 
         if (memberRepository.findByEmail(email)!=null){
             result = false;
         }
-        return new ApiResponse(200, result);
+        return result;
     }
 
     public ApiResponse join(UserJoinRequestDto userJoinRequestDto){
         Date date = new Date();
         Timestamp now = new Timestamp(date.getTime());
 
+        if (!checkEmail(userJoinRequestDto.getEmail())){
+            throw new CustomException(0,"이미 존재하는 회원입니다.");
+        }
 
         Member member = Member.builder()
-                .email(userJoinRequestDto.getUserEmail())
+                .email(userJoinRequestDto.getEmail())
                 .password(passwordEncoder.encode(userJoinRequestDto.getPassword()))
-                .name(userJoinRequestDto.getUserName())
+                .name(userJoinRequestDto.getName())
                 .birthday(userJoinRequestDto.getBirthday())
                 .registerDate(now)
                 .build();
@@ -46,7 +50,10 @@ public class UserService {
     }
 
     public ApiResponse deleteUser(String email){
+        if(checkEmail(email)) {
+            throw new CustomException(0, "존재하지 않는 회원입니다.");
+        }
         memberRepository.deleteByEmail(email);
-        return new ApiResponse(200,email+" 회원의 탈퇴가 완료되었습니다.");
+        return new ApiResponse(200, email + " 회원의 탈퇴가 완료되었습니다.");
     }
 }

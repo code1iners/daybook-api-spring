@@ -17,7 +17,7 @@ spring:
         format_sql: true
         show_sql: true
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
     database: postgresql
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     open-in-view: false

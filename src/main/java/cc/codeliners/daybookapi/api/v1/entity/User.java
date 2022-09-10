@@ -21,7 +21,7 @@ import java.time.LocalDateTime;
 public class User {
     @Id
     @Column(name = "user_id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int userId;
 
     @Column(name = "user_email", nullable = false, unique = true, length = 100)

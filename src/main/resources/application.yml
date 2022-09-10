@@ -6,7 +6,6 @@ spring:
 server:
   port: 3000
   error:
-    include-stacktrace: always
     include-message: always
     include-binding-errors: always
 

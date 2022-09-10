@@ -1,6 +1,7 @@
 package cc.codeliners.daybookapi.api.v1.controller;
 
 import cc.codeliners.daybookapi.api.v1.common.ApiResponse;
+import cc.codeliners.daybookapi.api.v1.dto.CheckMemberDto;
 import cc.codeliners.daybookapi.api.v1.service.UserService;
 import cc.codeliners.daybookapi.api.v1.dto.UserJoinRequestDto;
 import lombok.extern.log4j.Log4j2;
@@ -24,8 +25,8 @@ public class UserController {
     }
 
     @PostMapping("/auth/check")
-    public ApiResponse checkEmail(@RequestBody @Email String email){
-        return userService.checkEmail(email);
+    public ApiResponse checkEmail(@RequestBody @Valid CheckMemberDto checkMemberDto){
+        return userService.checkEmail(checkMemberDto.getEmail());
     }
 
     @PostMapping("/auth/join")

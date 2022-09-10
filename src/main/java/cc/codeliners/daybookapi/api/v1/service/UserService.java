@@ -3,28 +3,30 @@ package cc.codeliners.daybookapi.api.v1.service;
 import cc.codeliners.daybookapi.api.v1.common.ApiResponse;
 import cc.codeliners.daybookapi.api.v1.dto.UserJoinRequestDto;
 import cc.codeliners.daybookapi.api.v1.entity.Member;
-import cc.codeliners.daybookapi.api.v1.repository.UserRepository;
+import cc.codeliners.daybookapi.api.v1.repository.MemberRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
 import java.util.Date;
-import java.util.Optional;
 
 @Service
 public class UserService {
-    private final UserRepository userRepository;
+    private final MemberRepository memberRepository;
     private final PasswordEncoder passwordEncoder;
 
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
-        this.userRepository = userRepository;
+    public UserService(MemberRepository memberRepository, PasswordEncoder passwordEncoder) {
+        this.memberRepository = memberRepository;
         this.passwordEncoder = passwordEncoder;
     }
 
-    public ApiResponse checkEmail(String userEmail){
-        System.out.println(Optional.of(userRepository.findByUserEmail(userEmail)).isPresent());
-        return new ApiResponse(200,Optional.of(userRepository.findByUserEmail(userEmail)).isPresent());
+    public ApiResponse checkEmail(String email){
+        boolean result = true;
 
+        if (memberRepository.findByEmail(email)!=null){
+            result = false;
+        }
+        return new ApiResponse(200, result);
     }
 
     public ApiResponse join(UserJoinRequestDto userJoinRequestDto){
@@ -33,18 +35,18 @@ public class UserService {
 
 
         Member member = Member.builder()
-                .userEmail(userJoinRequestDto.getUserEmail())
+                .email(userJoinRequestDto.getUserEmail())
                 .password(passwordEncoder.encode(userJoinRequestDto.getPassword()))
-                .userName(userJoinRequestDto.getUserName())
+                .name(userJoinRequestDto.getUserName())
                 .birthday(userJoinRequestDto.getBirthday())
                 .registerDate(now)
                 .build();
-        userRepository.save(member);
+        memberRepository.save(member);
         return new ApiResponse(200,"회원가입이 완료되었습니다.");
     }
 
     public ApiResponse deleteUser(String email){
-        userRepository.deleteByUserEmail(email);
+        memberRepository.deleteByEmail(email);
         return new ApiResponse(200,email+" 회원의 탈퇴가 완료되었습니다.");
     }
 }

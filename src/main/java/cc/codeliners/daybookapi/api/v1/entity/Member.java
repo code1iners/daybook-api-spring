@@ -21,14 +21,14 @@ public class Member {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int userId;
 
-    @Column(name = "user_email", nullable = false, unique = true, length = 100)
-    private String userEmail;
+    @Column(name = "email", nullable = false, unique = true, length = 100)
+    private String email;
 
     @Column(name = "password", nullable = false)
     private String password;
 
-    @Column(name = "user_name", nullable = false)
-    private String userName;
+    @Column(name = "name", nullable = false)
+    private String name;
 
     @Column(name = "birthday", length = 30)
     @JsonFormat(shape= JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss", timezone="Asia/Seoul")

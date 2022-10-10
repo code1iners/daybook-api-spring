@@ -1,7 +1,9 @@
 package cc.codeliners.daybookapi.api.v1.controller;
 
 import cc.codeliners.daybookapi.api.v1.common.ApiResponse;
+import cc.codeliners.daybookapi.api.v1.common.CustomException;
 import cc.codeliners.daybookapi.api.v1.dto.CheckMemberDto;
+import cc.codeliners.daybookapi.api.v1.dto.UserLoginRequestDto;
 import cc.codeliners.daybookapi.api.v1.service.AuthService;
 import cc.codeliners.daybookapi.api.v1.dto.UserJoinRequestDto;
 import lombok.extern.log4j.Log4j2;
@@ -37,5 +39,10 @@ public class AuthController {
     @DeleteMapping("/auth/{email}")
     public ApiResponse deleteUser(@PathVariable @Email String email){
         return authService.deleteUser(email);
+    }
+
+    @PostMapping("/auth/login")
+    public ApiResponse login(@RequestBody UserLoginRequestDto userLoginRequestDto){
+        return authService.login(userLoginRequestDto);
     }
 }

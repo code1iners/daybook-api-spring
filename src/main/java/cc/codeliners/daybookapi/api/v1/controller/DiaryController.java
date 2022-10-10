@@ -16,7 +16,7 @@ public class DiaryController {
         this.diaryService = diaryService;
     }
 
-    @GetMapping("/diarie") //TODO 이거 마지막에 s 붙혀야댐
+    @GetMapping("/diaries")
     public ApiResponse diaryMain(String year, String month){
         return diaryService.diaryMain(year,month);
     }

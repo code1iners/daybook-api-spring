@@ -8,6 +8,7 @@ import cc.codeliners.daybookapi.api.v1.dto.UserLoginResponseDto;
 import cc.codeliners.daybookapi.api.v1.entity.User;
 import cc.codeliners.daybookapi.api.v1.repository.UserRepository;
 import cc.codeliners.daybookapi.api.v1.util.JwtTokenProvider;
+import org.apache.ibatis.javassist.tools.web.BadHttpRequest;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -42,7 +43,7 @@ public class AuthService {
         Timestamp now = new Timestamp(date.getTime());
 
         if (!checkEmail(userJoinRequestDto.getEmail())){
-            throw new CustomException(0,"이미 존재하는 회원입니다.");
+            throw new RuntimeException("이미 존재하는 회원입니다.");
         }
 
         User user = User.builder()

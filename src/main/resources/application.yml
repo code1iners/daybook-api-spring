@@ -4,7 +4,7 @@ spring:
 
 ---
 server:
-  port: 3000
+  port: 5959
   error:
     include-message: always
     include-binding-errors: always
@@ -19,15 +19,38 @@ spring:
         show_sql: true
     hibernate:
       ddl-auto: update
-    database: postgresql
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
     open-in-view: false
     generate-ddl: true
 
   datasource:
-    driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/daybook-db
-    username: postgres
-    password: root
-    platform: postgres
+    url: jdbc:mariadb://daybook-rds.cjhfreaotcgg.ap-northeast-2.rds.amazonaws.com:3306/daybook
+    driver-class-name: org.mariadb.jdbc.Driver
+    username: admin
+    password: guswl9814
+
+---
+server:
+  port: 5959
+  error:
+    include-message: always
+    include-binding-errors: always
+    include-stacktrace: never
+
+spring:
+  profiles: dev
+  jpa:
+    properties:
+      hibernate:
+        format_sql: true
+        show_sql: true
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+    generate-ddl: true
+
+  datasource:
+    url: jdbc:mariadb://daybook-rds.cjhfreaotcgg.ap-northeast-2.rds.amazonaws.com:3306/daybook
+    driver-class-name: org.mariadb.jdbc.Driver
+    username: admin
+    password: guswl9814
 

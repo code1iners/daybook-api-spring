@@ -45,7 +45,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/api/v1/hello","/api/v1/auth/login","/api/v1/auth/join").permitAll()
+                .antMatchers("/api/v1/hello","/api/v1/auth/login","/api/v1/auth/join","/api/v1/auth/check").permitAll()
 //                .antMatchers("/api/v1/diaries*").hasRole("USER")
                 .anyRequest().hasRole("USER")
                 .and()
@@ -61,7 +61,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private CorsConfigurationSource corsConfigurationSource(){
         CorsConfiguration configuration = new CorsConfiguration();
 
-        configuration.addAllowedOrigin("*");
+        configuration.addAllowedOriginPattern("*");
         configuration.addAllowedHeader("*");
         configuration.addAllowedMethod("*");
         configuration.setAllowCredentials(true);

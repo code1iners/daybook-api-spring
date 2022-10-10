@@ -4,6 +4,7 @@ import cc.codeliners.daybookapi.api.v1.common.ApiResponse;
 import cc.codeliners.daybookapi.api.v1.dto.DiaryCreateRequestDto;
 import cc.codeliners.daybookapi.api.v1.entity.Diary;
 import cc.codeliners.daybookapi.api.v1.repository.DiaryRepository;
+import cc.codeliners.daybookapi.api.v1.util.JwtTokenProvider;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
@@ -15,9 +16,11 @@ import java.util.*;
 public class DiaryService {
 
     private final DiaryRepository diaryRepository;
+    private final JwtTokenProvider jwtTokenProvider;
 
-    public DiaryService(DiaryRepository diaryRepository) {
+    public DiaryService(DiaryRepository diaryRepository, JwtTokenProvider jwtTokenProvider) {
         this.diaryRepository = diaryRepository;
+        this.jwtTokenProvider = jwtTokenProvider;
     }
 
     public ApiResponse diaryMain(String year, String month){
@@ -65,6 +68,7 @@ public class DiaryService {
     public ApiResponse createDiary(DiaryCreateRequestDto diaryCreateRequestDto){
         Date date = new Date();
         Timestamp now = new Timestamp(date.getTime());
+//        jwtTokenProvider.getUserEmailFromToken();
 
         Diary diary = Diary.builder()
                 .registerDate(now)

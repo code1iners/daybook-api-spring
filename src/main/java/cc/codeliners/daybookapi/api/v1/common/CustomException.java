@@ -10,7 +10,8 @@ import javax.validation.constraints.NotEmpty;
 @Data
 @NoArgsConstructor
 public class CustomException extends RuntimeException{
-    int code;
+    int status;
     String message;
+
 
 }

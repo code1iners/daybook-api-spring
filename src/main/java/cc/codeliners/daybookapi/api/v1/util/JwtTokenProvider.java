@@ -14,12 +14,11 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
-import java.util.Base64;
 import java.util.Date;
 
 /*******************************************************************
  * 토큰을 생성하고 검증하는 클래스
- * 해당 컴포너느는 필터클래스에서 사전 검증을 거친다
+ * 해당 컴포넌트는 필터클래스에서 사전 검증을 거친다
  *******************************************************************/
 @Log4j2
 @Component
@@ -28,7 +27,7 @@ public class JwtTokenProvider {
     private final UserDetailsServiceImpl userDetailsService;
 
     // secret key
-    private static String secretKey = "dayBookJwtTokenSecretKey";
+    private static String secretKey = "djcnjsldiwsnsdjlksjdanshadsuwsdjksmandmskjdayBookJwtTokenSecretKeyByHyunjiAndWony";
 
     // 토큰 만료시간
     private static final int JWT_EXPIRATION_TIME = 5*60*60*60;

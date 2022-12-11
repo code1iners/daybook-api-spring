@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.net.http.HttpRequest;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.Collections;
 import java.util.Date;
 
@@ -47,12 +48,14 @@ public class AuthService {
             throw new RuntimeException("이미 존재하는 회원입니다.");
         }
 
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+
         User user = User.builder()
                 .email(userJoinRequestDto.getEmail())
                 .password(passwordEncoder.encode(userJoinRequestDto.getPassword()))
                 .name(userJoinRequestDto.getName())
                 .roles(Collections.singletonList("ROLE_USER"))
-                .birthday(userJoinRequestDto.getBirthday())
+                .birthday(Timestamp.valueOf(dateFormat.format(userJoinRequestDto.getBirthday())))
                 .registerDate(now)
                 .build();
         userRepository.save(user);
@@ -61,7 +64,7 @@ public class AuthService {
     }
 
     public ApiResponse deleteUser(String token){
-        String userId = jwtTokenProvider.getUserIdByToken(token);
+        int userId = jwtTokenProvider.getUserIdByToken(token);
         String email = jwtTokenProvider.getUserEmailFromToken(token);
         if(checkEmail(email)) {
             throw new CustomException(0, "존재하지 않는 회원입니다.");

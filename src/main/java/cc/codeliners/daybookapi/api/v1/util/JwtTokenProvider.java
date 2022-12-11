@@ -76,8 +76,8 @@ public class JwtTokenProvider {
                 .getSubject();
     }
 
-    public String getUserIdByToken(String token){
-        return String.valueOf(Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody().get("userId"));
+    public int getUserIdByToken(String token){
+        return (int) Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody().get("userId");
     }
 
     public boolean validateToken(String token){

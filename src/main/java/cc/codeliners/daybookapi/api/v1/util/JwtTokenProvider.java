@@ -31,7 +31,7 @@ public class JwtTokenProvider {
     private static String secretKey = "djcnjsldiwsnsdjlksjdanshadsuwsdjksmandmskjdayBookJwtTokenSecretKeyByHyunjiAndWony";
 
     // 토큰 만료시간
-    private static final int JWT_EXPIRATION_TIME = 5*60*60*60;
+    private static final int JWT_EXPIRATION_TIME = 60*60*24*30*100; //3일
 
     public JwtTokenProvider(UserDetailsServiceImpl userDetailsService) {
         this.userDetailsService = userDetailsService;

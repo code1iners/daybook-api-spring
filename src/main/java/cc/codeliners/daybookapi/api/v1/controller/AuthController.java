@@ -36,9 +36,9 @@ public class AuthController {
         return authService.join(userJoinRequestDto);
     }
     @Transactional
-    @DeleteMapping("/auth/{email}")
-    public ApiResponse deleteUser(@PathVariable @Email String email){
-        return authService.deleteUser(email);
+    @DeleteMapping("/auth/delete")
+    public ApiResponse deleteUser(@RequestHeader("token") String token) {
+        return authService.deleteUser(token);
     }
 
     @PostMapping("/auth/login")

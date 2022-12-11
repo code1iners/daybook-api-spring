@@ -8,6 +8,7 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.security.access.prepost.PostFilter;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserCache;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Component;
@@ -73,6 +74,10 @@ public class JwtTokenProvider {
                 .setSigningKey(secretKey)
                 .parseClaimsJws(token).getBody()
                 .getSubject();
+    }
+
+    public String getUserIdByToken(String token){
+        return String.valueOf(Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody().get("userId"));
     }
 
     public boolean validateToken(String token){

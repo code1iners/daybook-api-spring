@@ -12,6 +12,7 @@ import org.apache.ibatis.javassist.tools.web.BadHttpRequest;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.net.http.HttpRequest;
 import java.sql.Timestamp;
 import java.util.Collections;
 import java.util.Date;
@@ -59,7 +60,9 @@ public class AuthService {
 
     }
 
-    public ApiResponse deleteUser(String email){
+    public ApiResponse deleteUser(String token){
+        String userId = jwtTokenProvider.getUserIdByToken(token);
+        String email = jwtTokenProvider.getUserEmailFromToken(token);
         if(checkEmail(email)) {
             throw new CustomException(0, "존재하지 않는 회원입니다.");
         }

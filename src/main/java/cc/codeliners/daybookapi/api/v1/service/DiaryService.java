@@ -1,6 +1,7 @@
 package cc.codeliners.daybookapi.api.v1.service;
 
 import cc.codeliners.daybookapi.api.v1.common.ApiResponse;
+import cc.codeliners.daybookapi.api.v1.common.CustomException;
 import cc.codeliners.daybookapi.api.v1.dto.DiaryCreateRequestDto;
 import cc.codeliners.daybookapi.api.v1.entity.Diary;
 import cc.codeliners.daybookapi.api.v1.repository.DiaryRepository;
@@ -49,7 +50,6 @@ public class DiaryService {
 
         result.put("diaries",diary);
         return new ApiResponse(200,result);
-
     }
 
     public ApiResponse findDiaryByDate(String year, String month, String day){
@@ -60,10 +60,7 @@ public class DiaryService {
         }
 
         return new ApiResponse(200,"조회", diaries);
-
     }
-
-
 
     public ApiResponse createDiary(DiaryCreateRequestDto diaryCreateRequestDto){
         Date date = new Date();
@@ -81,6 +78,19 @@ public class DiaryService {
         diaryRepository.save(diary);
 
         return new ApiResponse(200,"일기 작성이 완료되었습니다.");
+    }
+
+    public ApiResponse deleteDiary(int diaryId) {
+        try {
+            Diary deleteDiary = diaryRepository.findByDiaryId(diaryId);
+
+            diaryRepository.delete(deleteDiary);
+
+            return new ApiResponse(200,diaryId + "번 일기 삭제가 완료되었습니다.");
+
+        } catch (RuntimeException e){
+            throw new CustomException(0, "존재하지 않는 일기입니다.");
+        }
     }
 
 }

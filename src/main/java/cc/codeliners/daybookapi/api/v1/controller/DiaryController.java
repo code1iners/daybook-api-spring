@@ -30,4 +30,9 @@ public class DiaryController {
     public ApiResponse createDiary(@RequestBody DiaryCreateRequestDto diaryCreateRequestDto){
         return diaryService.createDiary(diaryCreateRequestDto);
     }
+
+    @DeleteMapping("/diaries/delete/{diaryId}")
+    public ApiResponse deleteDiary(@PathVariable int diaryId) {
+        return diaryService.deleteDiary(diaryId);
+    }
 }

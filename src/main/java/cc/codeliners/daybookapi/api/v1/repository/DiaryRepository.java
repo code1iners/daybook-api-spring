@@ -6,13 +6,13 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import java.sql.Timestamp;
+
 import java.util.List;
 
 @Repository
 public interface DiaryRepository extends JpaRepository<Diary,String> {
     @Query("select OBJECT(d) from Diary d where d.year = :year and d.month = :month and d.day = :day")
     List<Diary> findDiaryByDate(@Param("year") String year, @Param("month") String month, @Param("day") String day);
-
+    Diary findByDiaryId(int diaryId);
     int countByYearAndMonthAndDay(String year, String month, String day);
  }

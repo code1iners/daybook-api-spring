@@ -45,7 +45,7 @@ public class AuthService {
         Timestamp now = new Timestamp(date.getTime());
 
         if (!checkEmail(userJoinRequestDto.getEmail())){
-            throw new RuntimeException("이미 존재하는 회원입니다.");
+            throw new CustomException(0, "이미 존재하는 회원입니다.");
         }
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
